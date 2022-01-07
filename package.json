@@ -1,0 +1,26 @@
+{
+  "name": "assessment-4-gql-jmchiang1",
+  "version": "1.0.0",
+  "description": "// assessment #4 - MERN-QL",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/The-Software-Guild/assessment-4-gql-jmchiang1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/The-Software-Guild/assessment-4-gql-jmchiang1/issues"
+  },
+  "homepage": "https://github.com/The-Software-Guild/assessment-4-gql-jmchiang1#readme",
+  "dependencies": {
+    "apollo-server": "^3.6.1",
+    "graphql": "^16.2.0",
+    "mongoose": "^6.1.5",
+    "nodemon": "^2.0.15"
+  }
+}
