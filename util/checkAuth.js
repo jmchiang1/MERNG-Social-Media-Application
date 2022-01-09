@@ -4,7 +4,7 @@ const { SECRET_KEY } = require('../config');
 
 module.exports = (context) => {
   const authHeader = context.req.headers.authorization; //Cannot read properties of undefined "headers"
-  console.log("AUTH-HEADER",authHeader);
+  // console.log("AUTH-HEADER",authHeader);
   if (authHeader) {
     // Bearer + token value
     const token = authHeader.split('Bearer ')[1];   //split: get only the token value
@@ -20,4 +20,3 @@ module.exports = (context) => {
   }
   throw new Error('Authorization header must be provided'); //no authHeader detected 
 };
-
