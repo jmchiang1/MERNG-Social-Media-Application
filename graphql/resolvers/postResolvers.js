@@ -1,8 +1,11 @@
+const post = require("../../models/post");
 const Post = require("../../models/post");
 const checkAuth = require('../../util/checkAuth')
+const { AuthenticationError } = require('apollo-server');   //apollo specific authentication error 
 
 module.exports = {
   Query: {
+    //GET ALL POST 
     async getPosts() {
       try {
         const posts = await Post.find().sort()
@@ -11,6 +14,7 @@ module.exports = {
         throw new Error(err);
       }
     },
+    // GET SINGLE POST
     async getPost(_, { postId }) {
       try {
         const post = await Post.findById(postId);
@@ -27,6 +31,7 @@ module.exports = {
     },
   },
   Mutation: {
+    // CREATE POST
     async createPost(_, { title, description }, context){
       const user = checkAuth(context);  //make sure user is authenicated and able to post things 
       console.log("USER", user);
@@ -40,6 +45,21 @@ module.exports = {
 
       const post = await newPost.save();
       return post;
+    },
+    //DELETE POST 
+    async deletePost(_, {postId}, context ){
+      const user = checkAuth(context);
+      try {
+        const post = await Post.findById(postId);
+        if (user.username === post.username){
+          await Post.deleteOne();
+          return "Post has been deleted!"
+        } else {
+          throw new AuthenticationError('This is not your post to delete')
+        }
+      } catch (err){
+        throw new Error (err);
+      }
     }
   }
 };
