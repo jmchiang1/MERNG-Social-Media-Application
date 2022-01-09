@@ -2,7 +2,7 @@ const User = require("../../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-const { SECRET_KEY } = require("../../config");
+const { SECRET_KEY } = require('../../../config')
 const { UserInputError } = require("apollo-server");    //apollo-server specific error component 
 const { validateRegisterInput, validateLoginInput } = require('../../util/validators')  //import login and register validators 
 
