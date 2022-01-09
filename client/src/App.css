@@ -39,3 +39,7 @@
  body {
    background-color: gray;
  }
+
+ .container {
+   text-align: center;
+ }
