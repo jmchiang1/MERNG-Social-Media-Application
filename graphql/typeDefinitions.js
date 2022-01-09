@@ -1,27 +1,27 @@
 const { gql } = require("apollo-server");
 
 // ! = the input cannot be null / empty
-// parameters are the returned data
+// object parameters are the returned data
 module.exports = gql`
   type Post {
     id: ID!
     title: String!
     description: String!
     username: String!
-    # comments: [Comment]!
-    # likes: [Like]!
+    comments: [Comment]!
+    likes: [Like]!
   }
-#   type Comment {
-#     id: ID!
-#     createdAt: String!
-#     username: String!
-#     body: String!
-#   }
-#   type Like {
-#     id: ID!
-#     createdAt: String!
-#     username: String!
-#   }
+  type Comment {
+    id: ID!
+    createdAt: String!
+    username: String!
+    body: String!
+  }
+  type Like {
+    id: ID!
+    createdAt: String!
+    username: String!
+  }
   type User { 
     id: ID!
     email: String!
@@ -43,5 +43,8 @@ module.exports = gql`
     login(username: String!, password: String!): User!
     createPost(title: String!, description: String!): Post!
     deletePost(postId: ID!): String!
+    createComment(postId: String!, body: String!): Post!
+    deleteComment(postId: String!, commentId: String!): Post!
+    likePost(postId: ID!): Post!
   }
 `;
