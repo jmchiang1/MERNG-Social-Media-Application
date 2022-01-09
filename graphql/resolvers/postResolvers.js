@@ -1,10 +1,11 @@
 const Post = require("../../models/post");
+const checkAuth = require('../../util/checkAuth')
 
 module.exports = {
   Query: {
     async getPosts() {
       try {
-        const posts = await Post.find();
+        const posts = await Post.find().sort()
         return posts;
       } catch (err) {
         throw new Error(err);
@@ -25,4 +26,20 @@ module.exports = {
       }
     },
   },
+  Mutation: {
+    async createPost(_, { title, description }, context){
+      const user = checkAuth(context);  //make sure user is authenicated and able to post things 
+      console.log("USER", user);
+
+      const newPost = new Post({  //create new post 
+        title, 
+        description,
+        user: user.id,
+        username: user.username
+      })
+
+      const post = await newPost.save();
+      return post;
+    }
+  }
 };
