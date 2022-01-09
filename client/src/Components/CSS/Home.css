@@ -1,0 +1,13 @@
+.home-container {
+    display: flex;
+    justify-content: center;
+}
+
+.post-container{
+    border: 1px solid white;
+    border-radius: 10px;
+    width: 15rem;
+    height: 15rem;
+    padding: 1rem;
+    margin: 1rem;
+}

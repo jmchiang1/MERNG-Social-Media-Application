@@ -1,29 +1,39 @@
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
+import "./CSS/Home.css";
 
 function Home() {
   const { loading, data } = useQuery(FETCH_POST_QUERY);
-//   if (data){
-//       console.log(data);
-//   }
+  if (data) {
+    console.log(data);
+  }
 
   return (
     <div>
-      <h1>All Posts</h1>
-      {loading ? (
-        <h1>Loading posts...please wait</h1>
-      ) : (
-        // posts.map((post) => {
-        data.getPosts.map((post) => {
+        <h1 style={{textAlignLast: 'center'}}>All Posts</h1>
+      <div className="home-container">
+        {loading ? (
+          <h1>Loading posts...please wait</h1>
+        ) : (
+          // posts.map((post) => {
+          data.getPosts.map((post) => {
             return (
-                <div>
-                    <p>Title: {post.title}</p>
-                    <p>Description: {post.description}</p>
-                </div>
-            )
-        })
-      )}
+              <div className="post-container">
+                <p>Title: {post.title}</p>
+                <p>Description: {post.description}</p>
+                <p>
+                  Comments:{" "}
+                  {post.comments.map((comment) => {
+                    return <div>{comment.body}</div>;
+                  })}
+                </p>
+                <p>likeCount: {post.likeCount}</p>
+              </div>
+            );
+          })
+        )}
+      </div>
     </div>
   );
 }
