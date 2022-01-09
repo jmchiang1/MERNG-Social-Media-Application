@@ -1,4 +1,14 @@
 .navbar-container {
     display: flex;
     justify-content: space-evenly;
+    font-size: x-large;
+}
+
+.navbar-container a {
+    background-color: darkblue;
+    color: white;
+    text-decoration: none;
+    padding: .75rem;
+    border: 1px;
+    border-radius: 10px;
 }

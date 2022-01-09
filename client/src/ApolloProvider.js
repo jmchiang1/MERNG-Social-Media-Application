@@ -6,16 +6,16 @@ import { createHttpLink } from 'apollo-link-http';
 import { ApolloProvider } from '@apollo/react-hooks';
 
 const httpLink = createHttpLink({   //link to Apollo server on backend
-    uri: 'http://localhost:5000'
+    uri: 'http://localhost:5000/'
 })
 
 const client = new ApolloClient({
     link: httpLink,
     cache: new InMemoryCache()
-})
-
-export default (
+  });
+  
+  export default (
     <ApolloProvider client={client}>
-        <App/>
+      <App />
     </ApolloProvider>
-)
+  );
