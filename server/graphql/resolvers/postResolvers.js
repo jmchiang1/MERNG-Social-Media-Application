@@ -36,7 +36,7 @@ module.exports = {
       const user = checkAuth(context); //make sure user is authenicated and able to post things
       console.log("USER", user);
 
-      if (args.title.length === 0 || args.description.length === 0){
+      if (title.length === 0 || description.length === 0){
         throw new error('Title or description cannot be empty')
       }
 
