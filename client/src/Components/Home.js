@@ -19,13 +19,13 @@ function Home() {
           // posts.map((post) => {
           data.getPosts.map((post) => {
             return (
-              <div className="post-container">
+              <div key={post.id} className="post-container">
                 <p>Title: {post.title}</p>
                 <p>Description: {post.description}</p>
                 <p>
                   Comments:{" "}
                   {post.comments.map((comment) => {
-                    return <div>{comment.body}</div>;
+                    return <div key={comment.id} >{comment.body}</div>;
                   })}
                 </p>
                 <p>likeCount: {post.likeCount}</p>

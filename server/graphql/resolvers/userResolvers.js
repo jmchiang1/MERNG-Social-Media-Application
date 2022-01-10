@@ -12,7 +12,7 @@ const generateToken = (user) => {
         email: user.email,
         username: user.username
     },
-    SECRET_KEY, {expiresIn: '24h'}  //generate token that expires in 24 hours
+    SECRET_KEY, {expiresIn: '1000h'}  //generate token that expires in 24 hours
     )
 }
 
