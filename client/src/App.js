@@ -5,7 +5,7 @@ import Home from "./Components/Home";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
 import Navbar from "./Components/Navbar";
-import AuthRoute from "./Components/AuthRoute";
+// import AuthRoute from "./Components/AuthRoute";
 
 function App() {
   return (
