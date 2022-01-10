@@ -3,7 +3,7 @@ import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 import { useNavigate } from "react-router-dom";
 
-const Register = (props) => {
+const Register = () => {
 //   const [errors, setErrors] = useState({});
   const [user, setUser] = useState({
     username: "",
@@ -18,7 +18,7 @@ const Register = (props) => {
 
   const navigate = useNavigate();
 
-  const [addUser, { loading }] = useMutation(REGISTER_USER, {
+  const [addUser] = useMutation(REGISTER_USER, {
     update(_, result) {
       console.log(result);
       navigate('/')
