@@ -7,18 +7,23 @@ const typeDefs = require('./server/graphql/typeDefinitions');
 const resolvers = require('./server/graphql/resolvers/resolvers')
 const { MONGODB } = require('./config');
 
+const PORT = process.env.port || 5000;
 
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: ({ req }) => ({ req })
-})
- 
-mongoose.connect(MONGODB, { useNewUrlParser: true})
-.then(() => {
-    console.log('Successfully connected to MongoDB')
-    return server.listen({port: 5000})
-})
-.then(res => {
-    console.log(`Server Running on ${res.url}`)
-})
+    context: ({ req }) => ({ req, pubsub })
+  });
+  
+  mongoose
+    .connect(MONGODB, { useNewUrlParser: true })
+    .then(() => {
+      console.log('MongoDB Connected');
+      return server.listen({ port: PORT });
+    })
+    .then((res) => {
+      console.log(`Server running at ${res.url}`);
+    })
+    .catch(err => {
+      console.error(err)
+    })

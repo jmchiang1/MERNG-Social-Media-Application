@@ -1,23 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useQuery } from "@apollo/react-hooks";
-import gql from "graphql-tag";
 import "./CSS/Home.css";
+import { AuthContext } from "../Context/Auth";
+import PostForm from '../Components/PostForm'
+import { FETCH_POSTS_QUERY } from './graphql'
 
 function Home() {
-  const { loading, data } = useQuery(FETCH_POST_QUERY);
-  if (data) {
-    console.log(data);
-  }
-
+  const { user } = useContext(AuthContext);
+  const {
+    loading,
+    data: { getPosts: posts }
+  } = useQuery(FETCH_POSTS_QUERY);
   return (
     <div>
-        <h1 style={{textAlignLast: 'center'}}>All Posts</h1>
+      <h1 style={{ textAlignLast: "center" }}>All Posts</h1>
       <div className="home-container">
+          {user && (
+              <PostForm/>
+          )}
         {loading ? (
           <h1>Loading posts...please wait</h1>
         ) : (
           // posts.map((post) => {
-          data.getPosts.map((post) => {
+            posts && posts.map((post) => {
             return (
               <div key={post.id} className="post-container">
                 <p>Title: {post.title}</p>
@@ -25,7 +30,7 @@ function Home() {
                 <p>
                   Comments:{" "}
                   {post.comments.map((comment) => {
-                    return <div key={comment.id} >{comment.body}</div>;
+                    return <div key={comment.id}>{comment.body}</div>;
                   })}
                 </p>
                 <p>likeCount: {post.likeCount}</p>
@@ -37,26 +42,5 @@ function Home() {
     </div>
   );
 }
-
-const FETCH_POST_QUERY = gql`
-  {
-    getPosts {
-      id
-      title
-      description
-      username
-      likeCount
-      likes {
-        username
-      }
-      commentCount
-      comments {
-        id
-        username
-        body
-      }
-    }
-  }
-`;
 
 export default Home;
