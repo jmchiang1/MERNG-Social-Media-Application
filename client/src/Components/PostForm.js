@@ -1,43 +1,27 @@
-import React, {useState} from 'react';
-import { Button, Form } from 'semantic-ui-react';
-import gql from 'graphql-tag';
-import { useMutation } from '@apollo/react-hooks';
-import { FETCH_POSTS_QUERY } from './graphql'
-
-const useForm = (callback, initialState = {}) => {
-    const [values, setValues] = useState(initialState);
-  
-    const onChange = (event) => {
-      setValues({ ...values, [event.target.name]: event.target.value });
-    };
-  
-    const onSubmit = (event) => {
-      event.preventDefault();
-      callback();
-    };
-  
-    return {
-      onChange,
-      onSubmit,
-      values
-    };
-  };
+import React from "react";
+import gql from "graphql-tag";
+import { Button, Form } from "semantic-ui-react";
+import { useMutation } from "@apollo/react-hooks";
+import { useForm } from "./Hooks";
+import { FETCH_POSTS_QUERY } from "./graphql";
 
 function PostForm() {
   const { values, onChange, onSubmit } = useForm(createPostCallback, {
-    body: ''
+    title: "",
+    description: "",
   });
 
   const [createPost, { error }] = useMutation(CREATE_POST_MUTATION, {
     variables: values,
     update(proxy, result) {
       const data = proxy.readQuery({
-        query: FETCH_POSTS_QUERY
+        query: FETCH_POSTS_QUERY,
       });
       data.getPosts = [result.data.createPost, ...data.getPosts];
       proxy.writeQuery({ query: FETCH_POSTS_QUERY, data });
-      values.body = '';
-    }
+      values.title = "";
+      values.description = "";
+    },
   });
 
   function createPostCallback() {
@@ -50,31 +34,31 @@ function PostForm() {
         <h2>Create a post:</h2>
         <Form.Field>
           <Form.Input
-            placeholder="Title"
+            placeholder="Title..."
             name="title"
             onChange={onChange}
             value={values.title}
             error={error ? true : false}
           />
           <Form.Input
-            placeholder="Description!"
+            placeholder="Description..."
             name="description"
             onChange={onChange}
             value={values.description}
             error={error ? true : false}
           />
-          <Button type="submit" color="teal">
+          <Button type="submit">
             Submit
           </Button>
         </Form.Field>
       </Form>
-      {error && (
+      {/* {error && (
         <div className="ui error message" style={{ marginBottom: 20 }}>
           <ul className="list">
-            <li>{error.graphQLErrors[0].message}</li>
+            <li>{error.graphQLErrors[0]}</li>
           </ul>
         </div>
-      )}
+      )} */}
     </>
   );
 }

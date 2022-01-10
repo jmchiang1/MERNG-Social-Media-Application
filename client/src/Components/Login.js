@@ -9,7 +9,7 @@ import { AuthContext } from '../Context/Auth';
 import { useForm } from './Hooks';
 
 function Login(props) {
-    let navigate = useNavigate();
+    const navigate = useNavigate();
   const context = useContext(AuthContext);
   const [errors, setErrors] = useState({});
 
