@@ -6,11 +6,20 @@ import PostForm from '../Components/PostForm'
 import { FETCH_POSTS_QUERY } from './graphql'
 
 function Home() {
+
   const { user } = useContext(AuthContext);
-  const {
-    loading,
-    data: { getPosts: posts }
-  } = useQuery(FETCH_POSTS_QUERY);
+
+//   const {
+//     loading,
+//     data
+//     // data: { getPosts: posts }
+//   } = useQuery(FETCH_POSTS_QUERY);
+
+const { loading, data } = useQuery(FETCH_POSTS_QUERY)
+
+const { getPosts: posts } = {...data}
+
+
   return (
     <div>
       <h1 style={{ textAlignLast: "center" }}>All Posts</h1>

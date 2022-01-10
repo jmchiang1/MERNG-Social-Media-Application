@@ -13,7 +13,7 @@ function Navbar() {
 
   const menuBar = user ? (
     <div className="navbar-container">
-      <h2>{user.username}</h2>
+      <h2>Hello {user.username}</h2>
       <a href="/" onClick={logout}>
         Logout
       </a>

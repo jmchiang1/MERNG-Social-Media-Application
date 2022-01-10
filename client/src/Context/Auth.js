@@ -1,7 +1,7 @@
 import React, { useReducer, createContext } from 'react';
 // import jwtDecode from 'jwt-decode';
 
-const initialState = {  //initial user state is empty 
+const initialState = {
   user: null
 };
 
@@ -42,15 +42,15 @@ function AuthProvider(props) {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   function login(userData) {
-    localStorage.setItem('jwtToken', userData.token);   //grab token 
+    localStorage.setItem('jwtToken', userData.token);
     dispatch({
       type: 'LOGIN',
-      payload: userData //return userData
+      payload: userData
     });
   }
 
   function logout() {
-    localStorage.removeItem('jwtToken');    //remove token, no longer authenticating the user 
+    localStorage.removeItem('jwtToken');
     dispatch({ type: 'LOGOUT' });
   }
 
