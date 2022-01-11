@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../Context/Auth";
 import './CSS/Navbar.css'
+// import { Mutation } from "react-apollo";
 
 function Navbar() {
   const { user, logout } = useContext(AuthContext);
@@ -14,6 +15,9 @@ function Navbar() {
   const menuBar = user ? (
     <div className="navbar-container">
       <h2>Hello {user.username}</h2>
+      <a href="/" onClick={handleItemClick}>
+        Home
+      </a>
       <a href="/" onClick={logout}>
         Logout
       </a>

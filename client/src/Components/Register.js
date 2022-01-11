@@ -115,7 +115,6 @@ const REGISTER_USER = gql`
       id
       email
       username
-    #   createdAt
       token
     }
   }

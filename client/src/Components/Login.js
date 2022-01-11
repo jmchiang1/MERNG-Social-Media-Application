@@ -84,7 +84,6 @@ const LOGIN_USER = gql`
       id
       email
       username
-    #   createdAt
       token
     }
   }
