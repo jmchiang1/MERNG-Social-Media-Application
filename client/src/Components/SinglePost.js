@@ -1,12 +1,10 @@
 import React, { useContext, useState, useRef } from "react";
 import gql from "graphql-tag";
 import { useMutation, useQuery } from "@apollo/client";
-import { Button, Card, Form, Grid, Icon, Label } from "semantic-ui-react";
-import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../Context/Auth";
-// import LikeButton from "./LikeButton";
 import DeleteButton from "./DeleteButton";
+import "./CSS/SinglePost.css";
 
 function SinglePost(props) {
   const { user } = useContext(AuthContext); //login status
@@ -48,13 +46,7 @@ function SinglePost(props) {
   if (!getPost) {
     postMarkup = <p> Loading post...please wait </p>;
   } else {
-    const {
-      id,
-      username,
-      title,
-      description,
-      comments,
-    } = getPost;
+    const { id, username, title, description, comments } = getPost;
 
     postMarkup = (
       <div className="content-container">
@@ -66,26 +58,22 @@ function SinglePost(props) {
         </div>
 
         {/* reply post div */}
-          <div>
-            <p> Reply Post Below: </p>
-            {/* <Form> */}
-              <input
-                type="text"
-                placeholder="Comment..."
-                name="comment"
-                value={comment}
-                onChange={(event) => setComment(event.target.value)}
-                ref={commentInputRef}
-              />
-              <button
-                type="submit"
-                disabled={!comment}
-                onClick={submitComment}
-              >
-                Submit
-              </button>
-            {/* </Form> */}
-          </div>
+        <div>
+          <p> Reply Post Below: </p>
+          {/* <Form> */}
+          <input
+            type="text"
+            placeholder="Comment..."
+            name="comment"
+            value={comment}
+            onChange={(event) => setComment(event.target.value)}
+            ref={commentInputRef}
+          />
+          <button type="submit" onClick={submitComment}>
+            Submit
+          </button>
+          {/* </Form> */}
+        </div>
 
         {/* Comment div */}
         {comments.map((comment) => (
@@ -94,8 +82,10 @@ function SinglePost(props) {
               {user && user.username === comment.username && (
                 <DeleteButton postId={id} commentId={comment.id} />
               )}
-              <p> {comment.username} </p>
-              <p> {comment.body} </p>
+              <div className="comment-container">
+                <p> Username: {comment.username} </p>
+                <p> Comment: {comment.body} </p>
+              </div>
             </div>
           </div>
         ))}

@@ -1,0 +1,14 @@
+.content-container {
+    display: grid;
+    justify-content: center;
+    margin: 1rem;
+    font-size: larger;
+}
+
+.comment-container {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: .5rem;
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+}

@@ -1,0 +1,10 @@
+.create-post {
+    padding: 1rem;
+    margin: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.input-form {
+    margin-left: 1rem;
+}

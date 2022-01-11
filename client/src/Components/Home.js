@@ -15,7 +15,7 @@ function Home() {
 
   return (
     <div className="home-container">
-      <h1>Recent Posts</h1>
+      <h1 style={{marginRight: '10rem'}}>Recent Posts</h1>
       <div>
         {user && (
           <div>

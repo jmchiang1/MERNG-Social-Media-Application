@@ -1,9 +1,9 @@
 import React from "react";
 import gql from "graphql-tag";
-import { Button, Form } from "semantic-ui-react";
 import { useMutation } from "@apollo/react-hooks";
 import { useForm } from "./Hooks";
 import { FETCH_POSTS_QUERY } from "./graphql";
+import './CSS/PostForm.css'
 
 function PostForm() {
   const { values, onChange, onSubmit } = useForm(createPostCallback, {
@@ -30,28 +30,29 @@ function PostForm() {
 
   return (
     <>
-      <Form onSubmit={onSubmit}>
+      <form className="create-post" onSubmit={onSubmit}>
         <h2>Create a post:</h2>
-        <Form.Field>
-          <Form.Input
+        
+        <div className="input-form">
+          <input
             placeholder="Title..."
             name="title"
             onChange={onChange}
             value={values.title}
             error={error ? true : false}
           />
-          <Form.Input
+          <input
             placeholder="Description..."
             name="description"
             onChange={onChange}
             value={values.description}
             error={error ? true : false}
           />
-          <Button type="submit">
+          <button type="submit">
             Submit
-          </Button>
-        </Form.Field>
-      </Form>
+          </button>
+        </div>
+      </form>
       {/* {error && (
         <div className="ui error message" style={{ marginBottom: 20 }}>
           <ul className="list">
