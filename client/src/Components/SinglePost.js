@@ -1,20 +1,20 @@
 import React, { useContext, useState, useRef } from "react";
 import gql from "graphql-tag";
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation, useQuery } from "@apollo/client";
 import { Button, Card, Form, Grid, Icon, Label } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../Context/Auth";
-import LikeButton from "./LikeButton";
+// import LikeButton from "./LikeButton";
 import DeleteButton from "./DeleteButton";
 
 function SinglePost(props) {
   const { user } = useContext(AuthContext); //login status
-  // const postId = props.match.params.postId; //Cannot read properties of undefined (reading 'params')?
-  const postId = useParams();
-  console.log("postId", postId);
-  const commentInputRef = useRef(null);
 
+  const { postId } = useParams();
+  console.log("postId", { postId }); //returns the post id
+
+  const commentInputRef = useRef(null);
   const [comment, setComment] = useState("");
 
   //get single post
@@ -23,9 +23,8 @@ function SinglePost(props) {
       postId,
     },
   });
-  console.log("getPost",getPost);   //returns undefined
+  console.log("getPost", getPost); //returns undefined
   //message":"Variable \"$postId\" got invalid value, ID cannot represent value
-  //
 
   //create new comment
   const [submitComment] = useMutation(SUBMIT_COMMENT, {
@@ -54,95 +53,62 @@ function SinglePost(props) {
       username,
       title,
       description,
-    //   likes,
-    //   likeCount,
+      //   likes,
+      //   likeCount,
       comments,
-    //   commentCount,
+      //   commentCount,
     } = getPost;
 
     postMarkup = (
-      <Grid className="content-container">
-        <Grid.Row>
-          <Grid.Column width={2}></Grid.Column>
-          <Grid.Column width={10}>
-            <Card fluid>
-              <Card.Content>
-                <Card.Header> {username} </Card.Header>
-                <Card.Description> {title} </Card.Description>
-                <Card.Description> {description} </Card.Description>
-              </Card.Content>
-              <hr />
-              <Card.Content extra>
-                {/* <LikeButton user={user} post={{ id, likeCount, likes }} /> */}
-                {user ? (
-                  <Button
-                    as="div"
-                    labelPosition="right"
-                    onClick={() => console.log("comment")}
-                  >
-                    <Button basic color="teal">
-                      <Icon name="comments" />
-                    </Button>
-                    {/* <Label basic color="teal" pointing="left">
-                      {commentCount}
-                    </Label> */}
-                  </Button>
-                ) : (
-                  <Button as={Link} to="/login" labelPosition="right">
-                    <Button basic color="teal">
-                      <Icon name="comments" />
-                    </Button>
-                    {/* <Label basic color="teal" pointing="left">
-                      {commentCount}
-                    </Label> */}
-                  </Button>
-                )}
-                {user && user.username === username && (
-                  <DeleteButton postId={id} callback={deletePostCallback} />
-                )}
-              </Card.Content>
-            </Card>
-            {user && (
-              <Card fluid>
-                <Card.Content>
-                  <p> Reply Post </p>
-                  <Form>
-                    <div className="ui action input field">
-                      <input
-                        type="text"
-                        placeholder="Comment..."
-                        name="comment"
-                        value={comment}
-                        onChange={(event) => setComment(event.target.value)}
-                        ref={commentInputRef}
-                      />
-                      <button
-                        type="submit"
-                        className="ui button teal"
-                        disabled={comment.trim() === ""}
-                        onClick={submitComment}
-                      >
-                        Submit
-                      </button>
-                    </div>
-                  </Form>
-                </Card.Content>
-              </Card>
+      <div className="content-container">
+        <div>
+          <div classNAme="single-post-info">
+            <p> Username: {username} </p>
+            <p>Title: {title} </p>
+            <p>Description: {description} </p>
+          </div>
+
+          <div>
+            {user && user.username === username && (
+              <DeleteButton postId={id} callback={deletePostCallback} />
             )}
-            {comments.map((comment) => (
-              <Card fluid key={comment.id}>
-                <Card.Content>
-                  {user && user.username === comment.username && (
-                    <DeleteButton postId={id} commentId={comment.id} />
-                  )}
-                  <Card.Header> {comment.username} </Card.Header>
-                  <Card.Description> {comment.body} </Card.Description>
-                </Card.Content>
-              </Card>
-            ))}
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+          </div>
+        </div>
+        {user && (
+          <div>
+            <p> Reply Post </p>
+            <Form>
+              <input
+                type="text"
+                placeholder="Comment..."
+                name="comment"
+                value={comment}
+                onChange={(event) => setComment(event.target.value)}
+                ref={commentInputRef}
+              />
+              <button
+                type="submit"
+                className="ui button teal"
+                disabled={comment.trim() === ""}
+                onClick={submitComment}
+              >
+                Submit
+              </button>
+            </Form>
+          </div>
+        )}
+        {comments.map((comment) => (
+          <div key={comment.id}>
+            <div>
+              {user && user.username === comment.username && (
+                <DeleteButton postId={id} commentId={comment.id} />
+              )}
+              <p> {comment.username} </p>
+              <p> {comment.body} </p>
+            </div>
+          </div>
+        ))}
+      </div>
     );
   }
   return postMarkup;
@@ -155,10 +121,10 @@ const FETCH_POST_QUERY = gql`
       username
       title
       description
-    #   likes {
-    #     username
-    #   }
-    #   likeCount
+      #   likes {
+      #     username
+      #   }
+      #   likeCount
       comments {
         id
         username
@@ -167,7 +133,7 @@ const FETCH_POST_QUERY = gql`
         #   username
         # }
       }
-    #   commentCount
+      #   commentCount
     }
   }
 `;
@@ -184,7 +150,7 @@ const SUBMIT_COMMENT = gql`
         #   username
         # }
       }
-    #   commentCount
+      #   commentCount
     }
   }
 `;

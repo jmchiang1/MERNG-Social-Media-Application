@@ -6,6 +6,7 @@ import Login from "./Components/Login";
 import Register from "./Components/Register";
 import Navbar from "./Components/Navbar";
 import SinglePost from './Components/SinglePost';
+// import Single from './Components/Single';
 // import AuthRoute from "./Components/AuthRoute";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route exact path="/Login" element={ <Login/>  } />
             <Route exact path="/Register" element={<Register/> } />
             <Route exact path="/post/:postId" element={<SinglePost/> } />
+            {/* <Route exact path="/post/:postId" element={<Single/> } /> */}
             {/* <Route exact path="/Login" element={ <AuthRoute> <Login/> </AuthRoute> } />
             <Route exact path="/Register" element={<AuthRoute> <Register/> </AuthRoute>} /> */}
           </Routes>
