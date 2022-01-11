@@ -7,7 +7,7 @@ import DeleteButton from "./DeleteButton";
 import "./CSS/SinglePost.css";
 
 function SinglePost(props) {
-  const { user } = useContext(AuthContext); //login status
+//   const { user } = useContext(AuthContext); //login status
 
   const { postId } = useParams();
   console.log("postId", { postId }); //returns the post id
