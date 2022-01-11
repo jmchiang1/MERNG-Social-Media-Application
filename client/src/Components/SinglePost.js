@@ -53,31 +53,22 @@ function SinglePost(props) {
       username,
       title,
       description,
-      //   likes,
-      //   likeCount,
       comments,
-      //   commentCount,
     } = getPost;
 
     postMarkup = (
       <div className="content-container">
-        <div>
-          <div classNAme="single-post-info">
-            <p> Username: {username} </p>
-            <p>Title: {title} </p>
-            <p>Description: {description} </p>
-          </div>
-
-          <div>
-            {user && user.username === username && (
-              <DeleteButton postId={id} callback={deletePostCallback} />
-            )}
-          </div>
+        {/* single post div */}
+        <div className="single-post-info">
+          <p> Username: {username} </p>
+          <p>Title: {title} </p>
+          <p>Description: {description} </p>
         </div>
-        {user && (
+
+        {/* reply post div */}
           <div>
-            <p> Reply Post </p>
-            <Form>
+            <p> Reply Post Below: </p>
+            {/* <Form> */}
               <input
                 type="text"
                 placeholder="Comment..."
@@ -88,15 +79,15 @@ function SinglePost(props) {
               />
               <button
                 type="submit"
-                className="ui button teal"
-                disabled={comment.trim() === ""}
+                disabled={!comment}
                 onClick={submitComment}
               >
                 Submit
               </button>
-            </Form>
+            {/* </Form> */}
           </div>
-        )}
+
+        {/* Comment div */}
         {comments.map((comment) => (
           <div key={comment.id}>
             <div>
@@ -121,19 +112,11 @@ const FETCH_POST_QUERY = gql`
       username
       title
       description
-      #   likes {
-      #     username
-      #   }
-      #   likeCount
       comments {
         id
         username
         body
-        # likes {
-        #   username
-        # }
       }
-      #   commentCount
     }
   }
 `;
@@ -146,11 +129,7 @@ const SUBMIT_COMMENT = gql`
         id
         username
         body
-        # likes {
-        #   username
-        # }
       }
-      #   commentCount
     }
   }
 `;
