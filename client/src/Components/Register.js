@@ -3,6 +3,7 @@ import { Button, Form } from 'semantic-ui-react';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { useNavigate } from "react-router-dom";
+import './CSS/Login.css'
 
 import { AuthContext } from '../Context/Auth';
 import { useForm } from './Hooks';
@@ -42,9 +43,9 @@ function Register(props) {
 
   return (
     <div className="form-container">
-      <Form onSubmit={onSubmit} noValidate className={loading ? 'loading' : ''}>
+      <form onSubmit={onSubmit} noValidate className="login-form">
         <h1>Register</h1>
-        <Form.Input
+        <input
           label="Username"
           placeholder="Username.."
           name="username"
@@ -53,7 +54,7 @@ function Register(props) {
           error={errors.username ? true : false}
           onChange={onChange}
         />
-        <Form.Input
+        <input
           label="Email"
           placeholder="Email.."
           name="email"
@@ -62,7 +63,7 @@ function Register(props) {
           error={errors.email ? true : false}
           onChange={onChange}
         />
-        <Form.Input
+        <input
           label="Password"
           placeholder="Password.."
           name="password"
@@ -71,7 +72,7 @@ function Register(props) {
           error={errors.password ? true : false}
           onChange={onChange}
         />
-        <Form.Input
+        <input
           label="Confirm Password"
           placeholder="Confirm Password.."
           name="confirmPassword"
@@ -80,10 +81,10 @@ function Register(props) {
           error={errors.confirmPassword ? true : false}
           onChange={onChange}
         />
-        <Button type="submit" primary>
+        <button type="submit" primary>
           Register
-        </Button>
-      </Form>
+        </button>
+      </form>
       {Object.keys(errors).length > 0 && (
         <div className="ui error message">
           <ul className="list">

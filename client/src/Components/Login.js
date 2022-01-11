@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
-import { Button, Form } from 'semantic-ui-react';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { useNavigate } from "react-router-dom";
+import './CSS/Login.css'
  
 
 import { AuthContext } from '../Context/Auth';
@@ -41,9 +41,9 @@ function Login(props) {
 
   return (
     <div className="form-container">
-      <Form onSubmit={onSubmit} noValidate className={loading ? 'loading' : ''}>
+      <form onSubmit={onSubmit} className="login-form">
         <h1>Login</h1>
-        <Form.Input
+        <input
           label="Username"
           placeholder="Username.."
           name="username"
@@ -52,7 +52,7 @@ function Login(props) {
           error={errors.username ? true : false}
           onChange={onChange}
         />
-        <Form.Input
+        <input
           label="Password"
           placeholder="Password.."
           name="password"
@@ -61,10 +61,10 @@ function Login(props) {
           error={errors.password ? true : false}
           onChange={onChange}
         />
-        <Button type="submit" primary>
+        <button type="submit" primary>
           Login
-        </Button>
-      </Form>
+        </button>
+      </form>
       {Object.keys(errors).length > 0 && (
         <div className="ui error message">
           <ul className="list">

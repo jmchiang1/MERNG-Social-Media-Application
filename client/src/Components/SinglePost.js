@@ -13,6 +13,7 @@ function SinglePost(props) {
   console.log("postId", { postId }); //returns the post id
 
   const commentInputRef = useRef(null);
+
   const [comment, setComment] = useState("");
 
   //get single post
@@ -25,21 +26,17 @@ function SinglePost(props) {
   //message":"Variable \"$postId\" got invalid value, ID cannot represent value
 
   //create new comment
-  const [submitComment] = useMutation(SUBMIT_COMMENT, {
+  const [submitComment] = useMutation(SUBMIT_COMMENT_MUTATION, {
     update() {
       setComment("");
       commentInputRef.current.blur();
+      console.log("comment blur",commentInputRef.current.blur());
     },
     variables: {
       postId,
       body: comment,
     },
   });
-
-  // redirect to main page after delete post
-  function deletePostCallback() {
-    props.history.push("/");
-  }
 
   let postMarkup;
 
@@ -79,12 +76,12 @@ function SinglePost(props) {
         {comments.map((comment) => (
           <div key={comment.id}>
             <div>
-              {user && user.username === comment.username && (
-                <DeleteButton postId={id} commentId={comment.id} />
-              )}
+              {/* {user && user.username === comment.username && ( */}
+              {/* )} */}
               <div className="comment-container">
                 <p> Username: {comment.username} </p>
                 <p> Comment: {comment.body} </p>
+                <DeleteButton postId={id} commentId={comment.id} />
               </div>
             </div>
           </div>
@@ -111,14 +108,14 @@ const FETCH_POST_QUERY = gql`
   }
 `;
 
-const SUBMIT_COMMENT = gql`
-  mutation ($postId: ID!, $body: String!) {
+const SUBMIT_COMMENT_MUTATION = gql`
+  mutation($postId: String!, $body: String!) {
     createComment(postId: $postId, body: $body) {
       id
       comments {
         id
-        username
         body
+        username
       }
     }
   }

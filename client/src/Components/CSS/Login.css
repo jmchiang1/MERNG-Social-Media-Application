@@ -1,0 +1,11 @@
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 7rem;
+    font-size: x-large;
+}
+
+input {
+    font-size: x-large; 
+}
