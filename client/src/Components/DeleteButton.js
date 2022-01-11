@@ -20,9 +20,9 @@ function DeleteButton({ postId, callback }) {
     variables: { postId },
   });
 
-  return (
+  return (  
     <>
-      <button onClick={deletePost} />Delete
+      <button onClick={deletePost}>Delete</button>
     </>
   );
 }
