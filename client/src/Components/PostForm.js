@@ -32,7 +32,7 @@ function PostForm() {
     <>
       <form className="create-post" onSubmit={onSubmit}>
         <h2>Create a post:</h2>
-        
+
         <div className="input-form">
           <input
             placeholder="Title..."
@@ -41,7 +41,7 @@ function PostForm() {
             value={values.title}
             error={error ? true : false}
           />
-          <input
+          <textarea
             placeholder="Description..."
             name="description"
             onChange={onChange}

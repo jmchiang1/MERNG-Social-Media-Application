@@ -1,8 +1,8 @@
-import React, { useContext, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import gql from "graphql-tag";
 import { useMutation, useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
-import { AuthContext } from "../Context/Auth";
+// import { AuthContext } from "../Context/Auth";
 import DeleteButton from "./DeleteButton";
 import "./CSS/SinglePost.css";
 
