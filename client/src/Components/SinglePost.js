@@ -56,7 +56,7 @@ function SinglePost(props) {
 
         {/* reply post div */}
         <div>
-          <p> Reply Post Below: </p>
+          {/* <p> Reply Post Below: </p> */}
           {/* <Form> */}
           <input
             type="text"

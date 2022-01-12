@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import React, { useEffect, useState } from "react";
+import { useMutation } from "@apollo/react-hooks";
+import gql from "graphql-tag";
 
 // import MyPopup from './MyPopup';
 
@@ -14,27 +14,12 @@ function LikeButton({ user, post: { id, likeCount, likes } }) {
   }, [user, likes]);
 
   const [likePost] = useMutation(LIKE_POST_MUTATION, {
-    variables: { postId: id }
+    variables: { postId: id },
   });
-
-//   const likeButton = user ? (
-//     liked ? (
-//       <button color="teal">
-//       </button>
-//     ) : (
-//       <button color="teal" basic>
-//       </button>
-//     )
-//   ) : (
-//     <button as={Link} to="/login" color="teal" basic>
-//     </button>
-//   );
 
   return (
     <button onClick={likePost}>
-      <p>
-        Likes: {likeCount}
-      </p>
+      <p>Likes: {likeCount}</p>
     </button>
   );
 }
