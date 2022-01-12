@@ -42,7 +42,7 @@ function PostForm() {
             error={error ? true : false}
           />
           <textarea
-          style={{width: '-webkit-fill-available', height: '6rem'}}
+          style={{width: '-webkit-fill-available', height: '6rem', fontSize: 'large'}}
             placeholder="Description..."
             name="description"
             onChange={onChange}
@@ -56,13 +56,6 @@ function PostForm() {
           </button>
         </div>
       </form>
-      {/* {error && (
-        <div className="ui error message" style={{ marginBottom: 20 }}>
-          <ul className="list">
-            <li>{error.graphQLErrors[0]}</li>
-          </ul>
-        </div>
-      )} */}
     </>
   );
 }

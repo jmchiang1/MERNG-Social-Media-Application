@@ -2,9 +2,9 @@ import React, { useState, useRef } from "react";
 import gql from "graphql-tag";
 import { useMutation, useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
-// import { AuthContext } from "../Context/Auth";
-import DeleteButton from "./DeleteButton";
 import "./CSS/SinglePost.css";
+import DeleteButton from "./DeleteButton";
+import DeleteComment from "./DeleteComment";
 
 function SinglePost(props) {
   //   const { user } = useContext(AuthContext); //login status
@@ -82,7 +82,7 @@ function SinglePost(props) {
               <div className="comment-container">
                 <p> Username: {comment.username} </p>
                 <p> Comment: {comment.body} </p>
-                <DeleteButton postId={id} commentId={comment.id} />
+                <DeleteComment postId={id} commentId={comment.id} />
               </div>
             </div>
           </div>

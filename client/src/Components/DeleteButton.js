@@ -1,7 +1,6 @@
 import React from "react";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
-
 import { FETCH_POSTS_QUERY } from "./graphql";
 
 function DeleteButton({ postId, callback }) {
@@ -22,16 +21,18 @@ function DeleteButton({ postId, callback }) {
 
   return (  
     <>
-      <button onClick={deletePost}>Delete</button>
+      <button onClick={deletePost}>Delete Post</button>
     </>
   );
 }
 
+//delete post 
 const DELETE_POST_MUTATION = gql`
   mutation deletePost($postId: ID!) {
     deletePost(postId: $postId)
   }
 `;
+
 
 
 export default DeleteButton;
