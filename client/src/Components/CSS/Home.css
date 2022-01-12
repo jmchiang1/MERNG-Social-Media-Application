@@ -8,5 +8,13 @@
 .post-container{
 display: flex;
 flex-wrap: wrap;
-justify-content: center;
+/* justify-content: center; */
+}
+
+.form-post-container {
+    display: flex;
+}
+
+.create-div {
+    margin-left: 17rem;
 }

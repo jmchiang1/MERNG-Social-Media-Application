@@ -14,7 +14,7 @@ function Navbar() {
 
   const menuBar = user ? (
     <div className="navbar-container">
-      <h2>Hello {user.username}</h2>
+      <h2>Welcome Back: {user.username}</h2>
       <a href="/" onClick={handleItemClick}>
         Home
       </a>

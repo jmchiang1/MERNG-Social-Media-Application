@@ -7,7 +7,7 @@ import DeleteButton from "./DeleteButton";
 import "./CSS/SinglePost.css";
 
 function SinglePost(props) {
-//   const { user } = useContext(AuthContext); //login status
+  //   const { user } = useContext(AuthContext); //login status
 
   const { postId } = useParams();
   console.log("postId", { postId }); //returns the post id
@@ -30,7 +30,7 @@ function SinglePost(props) {
     update() {
       setComment("");
       commentInputRef.current.blur();
-      console.log("comment blur",commentInputRef.current.blur());
+      console.log("comment blur", commentInputRef.current.blur());
     },
     variables: {
       postId,
@@ -49,6 +49,7 @@ function SinglePost(props) {
       <div className="content-container">
         {/* single post div */}
         <div className="single-post-info">
+          <h1 style={{ textAlignLast: "center" }}> Original Post</h1>
           <p> Username: {username} </p>
           <p>Title: {title} </p>
           <p>Description: {description} </p>
@@ -109,7 +110,7 @@ const FETCH_POST_QUERY = gql`
 `;
 
 const SUBMIT_COMMENT_MUTATION = gql`
-  mutation($postId: String!, $body: String!) {
+  mutation ($postId: String!, $body: String!) {
     createComment(postId: $postId, body: $body) {
       id
       comments {

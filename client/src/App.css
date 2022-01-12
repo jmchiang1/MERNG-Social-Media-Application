@@ -10,3 +10,8 @@
  input {
    margin-bottom: 1rem;
  }
+
+ * {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 300;
+ }

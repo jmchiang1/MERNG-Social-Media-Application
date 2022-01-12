@@ -16,11 +16,12 @@ function Home() {
   return (
     <div className="home-container">
       <h1
-      style={{marginLeft: '1rem'}}
-      >Recent Posts</h1>
-      <div>
+      style={{textAlign: 'center'}}
+      >All Posts</h1>
+
+      <div className="form-post-container">
         {user && (
-          <div>
+          <div className="create-div">
             <PostForm />
           </div>
         )}

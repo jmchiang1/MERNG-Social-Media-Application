@@ -31,7 +31,7 @@ function PostForm() {
   return (
     <>
       <form className="create-post" onSubmit={onSubmit}>
-        <h2>Create a post:</h2>
+        <h2 style={{marginTop: '0'}}>Create a post:</h2>
 
         <div className="input-form">
           <input
@@ -42,13 +42,16 @@ function PostForm() {
             error={error ? true : false}
           />
           <textarea
+          style={{width: '-webkit-fill-available', height: '6rem'}}
             placeholder="Description..."
             name="description"
             onChange={onChange}
             value={values.description}
             error={error ? true : false}
           />
-          <button type="submit">
+          <button 
+          style={{marginLeft: '0'}}
+          type="submit">
             Submit
           </button>
         </div>
