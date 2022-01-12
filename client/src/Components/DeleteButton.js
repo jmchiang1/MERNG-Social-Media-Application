@@ -4,6 +4,7 @@ import { useMutation } from "@apollo/client";
 import { FETCH_POSTS_QUERY } from "./graphql";
 
 function DeleteButton({ postId, callback }) {
+    
   const mutation = DELETE_POST_MUTATION;
 
   const [deletePost] = useMutation(mutation, {

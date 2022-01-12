@@ -3,7 +3,7 @@ import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
 import { FETCH_POSTS_QUERY } from "./graphql";
 
-function DeleteButton({ postId, commentId, callback }) {
+function DeleteComment({ postId, commentId, callback }) {
 
   const mutation = DELETE_COMMENT_MUTATION;
 
@@ -12,12 +12,12 @@ function DeleteButton({ postId, commentId, callback }) {
       const data = proxy.readQuery({
         query: FETCH_POSTS_QUERY,
       });
-      let temp = data.getPosts.filter((p) => p.id !== postId);
-      proxy.writeQuery({ query: FETCH_POSTS_QUERY, data: { getPosts: temp } });
+      let temp = data.getPosts.filter((p) => p.id !== commentId);
+      proxy.writeQuery({ query: FETCH_POSTS_QUERY, data: temp });
 
       if (callback) callback();
     },
-    variables: { commentId },
+    variables: { commentId, postId },
   });
 
   return (  
@@ -41,4 +41,4 @@ const DELETE_COMMENT_MUTATION = gql`
   }
 `;
 
-export default DeleteButton;
+export default DeleteComment;
